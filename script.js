@@ -19,7 +19,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
-window.dispatchEvent(new Event('scroll'));
 // Cambio de fondo según scroll (con transición tipo crossfade)
 const bgSections = document.querySelectorAll('.bg-section');
 
@@ -38,6 +37,10 @@ window.addEventListener('scroll', () => {
     }
   });
 });
+
+// Mostrar el fondo correcto al cargar
+window.dispatchEvent(new Event('scroll'));
+
 
 // Animar logo al hacer scroll
 const logo = document.querySelector('.logo');
