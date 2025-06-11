@@ -28,3 +28,10 @@ window.addEventListener('scroll', () => {
     logo.style.transform = `rotate(${scrollY / 10}deg) scale(${1 + scrollY / 1000})`;
   }
 });
+
+const background = document.querySelector('body::before');
+
+window.addEventListener('scroll', () => {
+  const offset = window.scrollY * 0.2;
+  document.body.style.setProperty('--bg-scroll', `translateY(${offset}px)`);
+});
