@@ -56,19 +56,20 @@ body::before {
   height: 100vh;
   background-size: cover;
   background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
   opacity: 0;
   transition: opacity 1.2s ease;
+  z-index: 0;
 }
+
+.bg-section:nth-child(1) { z-index: 1; }
+.bg-section:nth-child(2) { z-index: 2; }
+.bg-section:nth-child(3) { z-index: 3; }
 
 .bg-section.active {
   opacity: 1;
-}
-.bg-section:nth-child(2) {
-  top: 100vh;
-}
-
-.bg-section:nth-child(3) {
-  top: 200vh;
 }
 
 .bg-section img {
