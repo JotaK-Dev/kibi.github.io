@@ -19,33 +19,24 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
-
+window.dispatchEvent(new Event('scroll'));
 // Cambio de fondo según scroll (con transición tipo crossfade)
 const bgSections = document.querySelectorAll('.bg-section');
 
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
-  const pageHeight = document.body.scrollHeight - window.innerHeight;
-  const progress = scrollY / pageHeight;
+  const vh = window.innerHeight;
 
-  let index = 0;
-  if (progress >= 0.66) {
-    index = 2;
-  } else if (progress >= 0.33) {
-    index = 1;
-  } else {
-    index = 0;
-  }
+  bgSections.forEach((section, index) => {
+    const sectionTop = index * vh;
+    const sectionBottom = sectionTop + vh;
 
-  bgSections.forEach((section, i) => {
-    section.classList.toggle('active', i === index);
+    if (scrollY >= sectionTop && scrollY < sectionBottom) {
+      section.classList.add('active');
+    } else {
+      section.classList.remove('active');
+    }
   });
-});
-
-// Parallax del gradiente de fondo
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  document.body.style.setProperty('--bg-scroll', `translateY(${-scrollY * 0.2}px)`);
 });
 
 // Animar logo al hacer scroll
