@@ -116,7 +116,7 @@ section h2 {
 }
 
 section p {
-  color: var(--color-text-secondary);
+  color: #ffffff;
   max-width: 600px;
   margin: auto;
 }
@@ -126,6 +126,8 @@ section p {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  background-color: #0000009e;
+  
   gap: 30px;
 }
 
@@ -133,6 +135,8 @@ section p {
   flex: 1 1 250px;
   background-color: #1a1a1a;
   padding: 30px;
+  margin-bottom: 10px;
+  filter: blur(4px) brightness(0.6);
   border-radius: 12px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -179,7 +183,7 @@ section p {
 .requisitos li {
   margin: 10px 0;
   font-size: 1.1rem;
-  color: var(--color-text-secondary);
+  color: #ffffff;
 }
 
 /* FOOTER */
