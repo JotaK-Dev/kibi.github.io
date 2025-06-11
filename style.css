@@ -248,6 +248,10 @@ footer a:hover {
 /* Efecto neón en imágenes */
 .carousel img {
   height: 400px;
+    user-select: none;
+  pointer-events: auto;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
   border-radius: 12px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
