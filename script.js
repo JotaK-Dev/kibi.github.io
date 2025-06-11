@@ -5,7 +5,7 @@ AOS.init({
   easing: 'ease-out',
 });
 
-// Suavizar scroll manual (opcional)
+// Suavizar scroll manual
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -20,7 +20,35 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Animar logo al hacer scroll (opcional, queda piola)
+// Cambio de fondo según scroll (con transición tipo crossfade)
+const bgSections = document.querySelectorAll('.bg-section');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const pageHeight = document.body.scrollHeight - window.innerHeight;
+  const progress = scrollY / pageHeight;
+
+  let index = 0;
+  if (progress >= 0.66) {
+    index = 2;
+  } else if (progress >= 0.33) {
+    index = 1;
+  } else {
+    index = 0;
+  }
+
+  bgSections.forEach((section, i) => {
+    section.classList.toggle('active', i === index);
+  });
+});
+
+// Parallax del gradiente de fondo
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  document.body.style.setProperty('--bg-scroll', `translateY(${-scrollY * 0.2}px)`);
+});
+
+// Animar logo al hacer scroll
 const logo = document.querySelector('.logo');
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
@@ -29,30 +57,14 @@ window.addEventListener('scroll', () => {
   }
 });
 
-const background = document.querySelector('body::before');
-
-const parallaxImages = document.querySelectorAll('.bg-images img');
-
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-
-  // Gradiente
-  document.body.style.setProperty('--bg-scroll', `translateY(${-scrollY * 0.2}px)`);
-
-  // Capas PNG con movimiento sutil
-  parallaxImages.forEach((img, i) => {
-    const depth = 0.1 + i * 0.05; // Cada imagen se mueve un poco distinto
-    img.style.transform = `translateY(${scrollY * depth}px)`;
-  });
-});
-
 // Modal de imagen
 const modal = document.getElementById("img-modal");
 const modalImg = document.getElementById("img-expanded");
 const closeBtn = document.querySelector(".img-close");
 
 document.querySelectorAll(".carousel img").forEach(img => {
-  img.addEventListener("click", () => {
+  img.addEventListener("click", (e) => {
+    e.stopPropagation(); // Evita interferencias con drag
     modal.style.display = "block";
     modalImg.src = img.src;
     modalImg.alt = img.alt;
@@ -67,6 +79,7 @@ modal.addEventListener("click", (e) => {
   if (e.target === modal) modal.style.display = "none";
 });
 
+// Carousel arrastrable con mouse y touch
 const carousel = document.querySelector('.carousel');
 let isDown = false;
 let startX;
@@ -114,4 +127,3 @@ carousel.addEventListener('touchmove', (e) => {
   const walk = (x - startX) * 2;
   carousel.scrollLeft = scrollLeft - walk;
 });
-
