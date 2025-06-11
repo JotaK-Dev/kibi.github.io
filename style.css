@@ -126,8 +126,6 @@ section p {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  background-color: #0000009e;
-  
   gap: 30px;
 }
 
@@ -136,8 +134,8 @@ section p {
   background-color: #1a1a1a;
   padding: 30px;
   margin-bottom: 10px;
-  filter: blur(4px) brightness(0.6);
   border-radius: 12px;
+  background-color: #0000009e;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
