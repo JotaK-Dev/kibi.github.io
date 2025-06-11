@@ -20,25 +20,65 @@ html {
 }
 
 body {
+  /* Tu config actual */
   font-family: 'Roboto', sans-serif;
   background-color: var(--color-bg);
   color: var(--color-text);
   line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
 }
 
+/* Fondo gradiente */
 body::before {
   content: '';
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 250%; /* Aumentado para cubrir el scroll */
+  height: 250%;
   background: linear-gradient(to bottom, #162936, #051824);
-  z-index: -2;
+  z-index: -3;
   transform: var(--bg-scroll, translateY(0));
   transition: transform 0.1s ease-out;
   opacity: 1;
   pointer-events: none;
+}
+
+/* Contenedor para imágenes PNG */
+.bg-images {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 250%; /* igual que el fondo */
+  z-index: -2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Cada imagen de fondo */
+.bg-images img {
+  width: 100%;
+  max-width: none;
+  display: block;
+  opacity: 0.5;
+  transform: translateY(0);
+  transition: transform 0.1s ease-out;
+}
+
+/* Posicionar cada imagen una debajo de otra */
+.bg-images img:nth-child(1) {
+  position: absolute;
+  top: 0;
+}
+.bg-images img:nth-child(2) {
+  position: absolute;
+  top: 100vh;
+}
+.bg-images img:nth-child(3) {
+  position: absolute;
+  top: 200vh;
 }
 
 
