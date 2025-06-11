@@ -19,28 +19,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
-// Cambio de fondo según scroll (con transición tipo crossfade)
-const bgSections = document.querySelectorAll('.bg-section');
-
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  const vh = window.innerHeight;
-
-  bgSections.forEach((section, index) => {
-    const sectionTop = index * vh;
-    const sectionBottom = sectionTop + vh;
-
-    if (scrollY >= sectionTop && scrollY < sectionBottom) {
-      section.classList.add('active');
-    } else {
-      section.classList.remove('active');
-    }
-  });
-});
-
-// Mostrar el fondo correcto al cargar
-window.dispatchEvent(new Event('scroll'));
-
 
 // Animar logo al hacer scroll
 const logo = document.querySelector('.logo');
