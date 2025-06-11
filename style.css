@@ -33,9 +33,9 @@ body::before {
   left: 0;
   width: 100%;
   height: 240%;
-  background: url('wall.png') no-repeat center center;
-  background-size: cover;
+  background: linear-gradient(to bottom, #051824, #162936);
   z-index: -2;
+  box-shadow: 0 0 100px rgba(152, 255, 152, 0.05) inset;
   transform: var(--bg-scroll, translateY(0));
   transition: transform 0.1s ease-out;
   filter: blur(4px) brightness(0.6);
