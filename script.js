@@ -35,3 +35,23 @@ window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
   document.body.style.setProperty('--bg-scroll', `translateY(${-scrollY * 0.2}px)`);
 });
+// Modal de imagen
+const modal = document.getElementById("img-modal");
+const modalImg = document.getElementById("img-expanded");
+const closeBtn = document.querySelector(".img-close");
+
+document.querySelectorAll(".carousel img").forEach(img => {
+  img.addEventListener("click", () => {
+    modal.style.display = "block";
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+  });
+});
+
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) modal.style.display = "none";
+});
