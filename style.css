@@ -142,7 +142,7 @@ section p {
   display: flex;
   overflow-x: auto;
   gap: 20px;
-  padding: 20px 0;
+  padding: 40px 40px;
 }
 
 .screenshots .carousel img {
