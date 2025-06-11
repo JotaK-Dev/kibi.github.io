@@ -56,7 +56,6 @@ modal.addEventListener("click", (e) => {
   if (e.target === modal) modal.style.display = "none";
 });
 
-// Hacer el carousel arrastrable con mouse o touch
 const carousel = document.querySelector('.carousel');
 let isDown = false;
 let startX;
@@ -64,30 +63,30 @@ let scrollLeft;
 
 carousel.addEventListener('mousedown', (e) => {
   isDown = true;
-  carousel.classList.add('dragging');
   startX = e.pageX - carousel.offsetLeft;
   scrollLeft = carousel.scrollLeft;
+  document.body.style.userSelect = "none";
 });
 
 carousel.addEventListener('mouseleave', () => {
   isDown = false;
-  carousel.classList.remove('dragging');
+  document.body.style.userSelect = "";
 });
 
 carousel.addEventListener('mouseup', () => {
   isDown = false;
-  carousel.classList.remove('dragging');
+  document.body.style.userSelect = "";
 });
 
 carousel.addEventListener('mousemove', (e) => {
   if (!isDown) return;
   e.preventDefault();
   const x = e.pageX - carousel.offsetLeft;
-  const walk = (x - startX) * 2; // Ajustá velocidad acá
+  const walk = (x - startX) * 2;
   carousel.scrollLeft = scrollLeft - walk;
 });
 
-// Soporte para dispositivos táctiles
+// Touch support
 carousel.addEventListener('touchstart', (e) => {
   isDown = true;
   startX = e.touches[0].pageX;
@@ -104,3 +103,4 @@ carousel.addEventListener('touchmove', (e) => {
   const walk = (x - startX) * 2;
   carousel.scrollLeft = scrollLeft - walk;
 });
+
