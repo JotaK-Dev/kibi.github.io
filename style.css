@@ -73,7 +73,8 @@ body::after {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: radial-gradient(ellipse at center, #111 0%, #0e0e0e 100%);
+  background: transparent;
+  backdrop-filter: blur(2px); /* Suaviza si querés que el texto resalte */
   text-align: center;
   padding: 0 20px;
 }
