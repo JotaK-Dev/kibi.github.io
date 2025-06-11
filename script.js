@@ -32,6 +32,6 @@ window.addEventListener('scroll', () => {
 const background = document.querySelector('body::before');
 
 window.addEventListener('scroll', () => {
-  const offset = window.scrollY * 0.2;
-  document.body.style.setProperty('--bg-scroll', `translateY(${offset}px)`);
+  const scrollY = window.scrollY;
+  document.body.style.setProperty('--bg-scroll', `translateY(${-scrollY * 0.2}px)`);
 });
