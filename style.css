@@ -36,62 +36,58 @@ body::before {
   width: 100%;
   height: 250%;
   background: linear-gradient(to bottom, #162936, #051824);
-  z-index: -4;
+  z-index: -5;
   transform: var(--bg-scroll, translateY(0));
   transition: transform 0.1s ease-out;
   opacity: 1;
   pointer-events: none;
 }
 
-/* Secciones de fondo (bg1, bg2, bg3) */
-.bg-section {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: -3;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 1.2s ease;
-  background-size: cover;
-  background-position: center;
-}
-
-.bg-section.active {
-  opacity: 1;
-}
-
-/* Capas PNG transparentes con parallax */
-.bg-images {
+/* Background stack container */
+.background-stack {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 250%;
-  z-index: -2;
+  z-index: -4;
   pointer-events: none;
   overflow: hidden;
 }
 
-.bg-images img {
-  width: 100%;
-  max-width: none;
-  display: block;
-  opacity: 0.5;
-  transform: translateY(0);
-  transition: transform 0.1s ease-out;
+/* Cada capa PNG */
+.bg-section {
   position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: -3;
 }
 
-.bg-images img:nth-child(1) {
-  top: 0;
-}
-.bg-images img:nth-child(2) {
+.bg-section:nth-child(2) {
   top: 100vh;
 }
-.bg-images img:nth-child(3) {
+
+.bg-section:nth-child(3) {
   top: 200vh;
+}
+
+.bg-section img {
+  width: 100%;
+  height: auto;
+  max-width: none;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.bg-section.active {
+  opacity: 1;
 }
 
 /* CONTENIDO PRINCIPAL */
@@ -113,6 +109,8 @@ body::before {
   background: transparent;
   text-align: center;
   padding: 0 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .hero .logo {
