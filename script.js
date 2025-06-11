@@ -31,10 +31,21 @@ window.addEventListener('scroll', () => {
 
 const background = document.querySelector('body::before');
 
+const parallaxImages = document.querySelectorAll('.bg-images img');
+
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
+
+  // Gradiente
   document.body.style.setProperty('--bg-scroll', `translateY(${-scrollY * 0.2}px)`);
+
+  // Capas PNG con movimiento sutil
+  parallaxImages.forEach((img, i) => {
+    const depth = 0.1 + i * 0.05; // Cada imagen se mueve un poco distinto
+    img.style.transform = `translateY(${scrollY * depth}px)`;
+  });
 });
+
 // Modal de imagen
 const modal = document.getElementById("img-modal");
 const modalImg = document.getElementById("img-expanded");
