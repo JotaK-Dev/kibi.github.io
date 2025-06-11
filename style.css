@@ -1,11 +1,10 @@
-/* Fuente moderna: Roboto */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 :root {
   --color-bg: #0e0e0e;
   --color-text: #ffffff;
   --color-text-secondary: #b0b0b0;
-  --color-accent: #27e9b5; /* Verde manzana */
+  --color-accent: #27e9b5;
   --color-accent-hover: #BEFFEDFF;
 }
 
@@ -20,7 +19,6 @@ html {
 }
 
 body {
-  /* Tu config actual */
   font-family: 'Roboto', sans-serif;
   background-color: var(--color-bg);
   color: var(--color-text);
@@ -38,26 +36,44 @@ body::before {
   width: 100%;
   height: 250%;
   background: linear-gradient(to bottom, #162936, #051824);
-  z-index: -3;
+  z-index: -4;
   transform: var(--bg-scroll, translateY(0));
   transition: transform 0.1s ease-out;
   opacity: 1;
   pointer-events: none;
 }
 
-/* Contenedor para imágenes PNG */
+/* Secciones de fondo (bg1, bg2, bg3) */
+.bg-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  background-size: cover;
+  background-position: center;
+}
+
+.bg-section.active {
+  opacity: 1;
+}
+
+/* Capas PNG transparentes con parallax */
 .bg-images {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 250%; /* igual que el fondo */
+  height: 250%;
   z-index: -2;
   pointer-events: none;
   overflow: hidden;
 }
 
-/* Cada imagen de fondo */
 .bg-images img {
   width: 100%;
   max-width: none;
@@ -65,23 +81,20 @@ body::before {
   opacity: 0.5;
   transform: translateY(0);
   transition: transform 0.1s ease-out;
+  position: absolute;
 }
 
-/* Posicionar cada imagen una debajo de otra */
 .bg-images img:nth-child(1) {
-  position: absolute;
   top: 0;
 }
 .bg-images img:nth-child(2) {
-  position: absolute;
   top: 100vh;
 }
 .bg-images img:nth-child(3) {
-  position: absolute;
   top: 200vh;
 }
 
-
+/* CONTENIDO PRINCIPAL */
 .container {
   width: 90%;
   max-width: 1100px;
@@ -131,7 +144,7 @@ body::before {
   background-color: var(--color-accent-hover);
 }
 
-/* Secciones comunes */
+/* SECCIONES GENERALES */
 section h2 {
   font-size: 2rem;
   margin-bottom: 20px;
@@ -154,11 +167,10 @@ section p {
 
 .feature {
   flex: 1 1 250px;
-  background-color: #1a1a1a;
+  background-color: #0000009e;
   padding: 30px;
   margin-bottom: 10px;
   border-radius: 12px;
-  background-color: #0000009e;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -177,22 +189,76 @@ section p {
   margin-bottom: 10px;
 }
 
-/* CAROUSEL MOCKUP */
+/* CAROUSEL */
 .screenshots .carousel {
   display: flex;
   overflow-x: auto;
   gap: 20px;
   padding: 40px 40px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.screenshots .carousel img {
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel img {
   height: 400px;
+  user-select: none;
+  pointer-events: auto;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
   border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 15px var(--color-accent);
+}
+
+.carousel img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px var(--color-accent);
+}
+
+/* MODAL IMG */
+.img-modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+}
+
+.img-modal-content {
+  display: block;
+  margin: auto;
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
   transition: transform 0.3s ease;
 }
 
-.screenshots .carousel img:hover {
-  transform: scale(1.05);
+.img-close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.img-close:hover {
+  color: var(--color-accent);
 }
 
 /* REQUISITOS */
@@ -234,107 +300,4 @@ footer a:hover {
   .screenshots .carousel img {
     height: 300px;
   }
-}
-.img-modal {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  padding-top: 60px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(4px);
-}
-
-.img-modal-content {
-  display: block;
-  margin: auto;
-  max-width: 90%;
-  max-height: 80vh;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.8);
-  transition: transform 0.3s ease;
-}
-
-.img-close {
-  position: absolute;
-  top: 20px;
-  right: 35px;
-  color: #fff;
-  font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 1000;
-}
-
-.img-close:hover {
-  color: var(--color-accent);
-}
-
-/* Ocultar scrollbar horizontal del carousel */
-.carousel {
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
-}
-
-.carousel::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
-}
-
-/* Efecto neón en imágenes */
-.carousel img {
-  height: 400px;
-    user-select: none;
-  pointer-events: auto;
-  -webkit-user-drag: none;
-  -webkit-touch-callout: none;
-  border-radius: 12px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  box-shadow: 0 0 15px var(--color-accent);
-}
-
-.carousel img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px var(--color-accent);
-}
-
-.background-stack {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 250%;
-  z-index: -2;
-  pointer-events: none;
-  display: flex;
-  flex-direction: column;
-}
-
-.bg-section {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.bg-section img {
-  width: 100%;
-  max-width: none;
-  opacity: 0;
-  transform: scale(1);
-  transition: opacity 0.5s ease-out;
-  pointer-events: none;
-}
-
-/* Se verá visible solo el layer actual */
-.bg-section.active img {
-  opacity: 0.4; /* podés ajustar esto */
 }
